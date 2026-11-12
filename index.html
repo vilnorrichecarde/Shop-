@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111126">
+<title>SHOP — Boutique en ligne</title>
+<style>
+:root{--ink:#17172d;--muted:#73748d;--accent:#8067ff;--accent2:#b59cff;--bg:#f6f5ff;--card:#fff;--dark:#111126}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:rgba(17,17,38,.97);color:white;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 28px #17172d22;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.logo{font-weight:900;font-size:1.55rem;letter-spacing:3px}.logo span{color:#b59cff}
+button{border:0;border-radius:13px;padding:12px 17px;background:linear-gradient(120deg,var(--accent),#a17bff);color:#fff;font-weight:800;cursor:pointer;box-shadow:0 7px 18px #8067ff35;transition:transform .2s,filter .2s}button:hover{transform:translateY(-2px);filter:brightness(1.07)}
+main{max-width:1120px;margin:auto;padding:30px 5% 64px}
+.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 85% 15%,#b59cff88,transparent 28%),linear-gradient(120deg,#17172f,#44327d 58%,#8067ff);color:white;padding:clamp(28px,6vw,58px);border-radius:28px;margin-bottom:34px;box-shadow:0 18px 40px #33236d2b}
+.hero:after{content:'✦';position:absolute;right:8%;bottom:-42px;font-size:190px;color:#ffffff13;pointer-events:none}.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:3px;color:#d8ccff;text-transform:uppercase}.hero h1{font-size:clamp(2.25rem,7vw,4.2rem);line-height:1.03;margin:13px 0}.hero p{max-width:550px;line-height:1.7;color:#eeeaff;margin:0 0 24px}.hero button{background:white;color:#4c388c;box-shadow:none}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:34px 0 18px}.section-head h2{margin:0;font-size:1.65rem}.section-head p{margin:0;color:var(--muted);font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.product{background:var(--card);border:1px solid #eae7fb;border-radius:22px;padding:15px;box-shadow:0 9px 28px #2820520b;transition:transform .22s,box-shadow .22s}.product:hover{transform:translateY(-5px);box-shadow:0 16px 32px #28205218}.pic{height:165px;border-radius:16px;display:grid;place-items:center;font-size:4.4rem;background:linear-gradient(145deg,#f0edff,#e5ddff)}.product h3{margin:16px 0 7px}.product p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.5;min-height:42px}.price{font-size:1.25rem;font-weight:900;margin:15px 0}.product button{width:100%}
+.cart{background:white;border:1px solid #e9e5fa;border-radius:22px;padding:22px;margin-top:32px;box-shadow:0 9px 28px #2820520b}.cart h2{margin:0 0 14px}.cart p{color:var(--muted)}#cart-items{line-height:1.9}.total{font-size:1.2rem;font-weight:900;color:var(--ink)!important}.note{font-size:.82rem;color:var(--muted);margin-top:20px;text-align:center;line-height:1.5}
+footer{text-align:center;padding:27px;color:#c8c5dc;background:var(--dark);font-size:.9rem;letter-spacing:.4px}
+@media(max-width:520px){header{padding:14px 4%}.hero{padding:28px 22px;border-radius:22px}.section-head{display:block}.section-head p{margin-top:6px}}
+</style>
+</head>
+<body>
+<header><div class="logo">SHOP<span>✦</span></div><button onclick="document.querySelector('#panier').scrollIntoView({behavior:'smooth'})">Panier (<span id="count">0</span>)</button></header>
+<main>
+<section class="hero"><div class="eyebrow">Bienvenue dans notre boutique</div><h1>Le style<br>commence ici.</h1><p>Découvre notre sélection d’articles et ajoute tes coups de cœur au panier. SHOP, ton espace shopping en ligne.</p><button onclick="document.querySelector('#produits').scrollIntoView({behavior:'smooth'})">Découvrir les produits&nbsp; →</button></section>
+<div class="section-head"><h2 id="produits">Nos produits</h2><p>Une sélection pour ton quotidien</p></div>
+<section class="grid">
+<article class="product"><div class="pic">🎧</div><h3>Écouteurs sans fil</h3><p>Un accessoire pratique pour écouter ta musique.</p><div class="price">35 $</div><button onclick="add('Écouteurs sans fil',35)">Ajouter au panier</button></article>
+<article class="product"><div class="pic">⌚</div><h3>Montre classique</h3><p>Une montre simple et élégante pour tous les jours.</p><div class="price">25 $</div><button onclick="add('Montre classique',25)">Ajouter au panier</button></article>
+<article class="product"><div class="pic">🎒</div><h3>Sac à dos</h3><p>Un sac utile pour les cours et les sorties.</p><div class="price">30 $</div><button onclick="add('Sac à dos',30)">Ajouter au panier</button></article>
+</section>
+<section class="cart" id="panier"><h2>🛍️ Ton panier</h2><div id="cart-items">Ton panier est vide.</div><p class="total" id="total">Total : 0 $</p><button onclick="checkout()">Valider la commande (démo)</button><p class="note">Version de démonstration : aucun paiement réel n’est effectué et aucune commande n’est envoyée.</p></section>
+<p class="note">Merci de visiter SHOP.</p>
+</main>
+<footer>© 2026 SHOP — Boutique en ligne</footer>
+<script>
+const cart=[];
+function add(name,price){cart.push({name,price});render();document.querySelector('#panier').scrollIntoView({behavior:'smooth'});}
+function render(){document.getElementById('count').textContent=cart.length;document.getElementById('cart-items').innerHTML=cart.length?cart.map((x,i)=>`${i+1}. ${x.name} — ${x.price} $`).join('<br>'):'Ton panier est vide.';document.getElementById('total').textContent='Total : '+cart.reduce((s,x)=>s+x.price,0)+' $';}
+function checkout(){if(!cart.length){alert('Ajoute d’abord un produit au panier.');return;}alert('Commande de démonstration uniquement. Pour recevoir de vraies commandes, il faudra connecter un moyen de contact et configurer les paiements avec un adulte responsable.');}
+</script>
+</body>
+</html>
